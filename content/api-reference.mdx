@@ -15,9 +15,10 @@ Use this endpoint to create a new Campaign.
 
 `POST /accounts/{account_id}/campaigns`
 
-## Request
+## Sample Request
 
 <ApiRequest>
+{`
 {
   "campaign": {
     "name": "Homepage Experiment",
@@ -25,11 +26,13 @@ Use this endpoint to create a new Campaign.
     "status": "running"
   }
 }
+`}
 </ApiRequest>
 
-## Response (200 OK)
+## Sample Response
 
 <ApiResponse>
+{`
 {
   "campaign": {
     "id": 12345,
@@ -38,6 +41,8 @@ Use this endpoint to create a new Campaign.
     "created_at": "2025-04-15T10:00:00Z"
   }
 }
+`}
 </ApiResponse>
+
 
 > 🚀 Tip: You must include at least one goal ID to create a valid campaign.
