@@ -4,20 +4,23 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "dev": "yarn dev",
-    "build": "yarn build",
-    "start": "yarn start",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "dev": "next dev",
+    "build": "next build",
+    "export": "next export",
+    "deploy": "gh-pages -d out"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
     "@mdx-js/loader": "^3.0.1",
+    "@mdx-js/react": "^3.1.0",
     "@next/mdx": "^14.1.4",
     "next": "^14.1.4",
     "react": "^18.2.0",
     "react-dom": "^18.2.0"
   },
-  "devDependencies": {}
+  "devDependencies": {
+    "gh-pages": "^6.3.0"
+  }
 }
