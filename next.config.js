@@ -2,16 +2,20 @@
 const withMDX = require('@next/mdx')({
   extension: /\.mdx?$/,
   options: {
-    remarkPlugins: [],
-    rehypePlugins: [],
-    // providerImportSource: "@mdx-js/react", // Uncomment if using MDXProvider
+    remarkPlugins: [require('remark-gfm')],
+    rehypePlugins: [require('rehype-slug')],
+    providerImportSource: "@mdx-js/react", // Enables MDXProvider if used
   }
 });
 
-module.exports = withMDX({
+/** @type {import('next').NextConfig} */
+const nextConfig = {
   pageExtensions: ['js', 'jsx', 'md', 'mdx'],
   trailingSlash: true,
+  reactStrictMode: true,
   images: {
-    unoptimized: true
+    unoptimized: true,
   }
-});
+};
+
+module.exports = withMDX(nextConfig);
