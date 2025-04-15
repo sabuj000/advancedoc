@@ -4,16 +4,13 @@ const withMDX = require('@next/mdx')({
   options: {
     remarkPlugins: [],
     rehypePlugins: [],
-    // providerImportSource: "@mdx-js/react", // Uncomment if needed
+    // providerImportSource: "@mdx-js/react", // Uncomment if using MDXProvider
   }
 });
 
 module.exports = withMDX({
   pageExtensions: ['js', 'jsx', 'md', 'mdx'],
-  output: 'export',
   trailingSlash: true,
-  basePath: '/advancedoc',
-  assetPrefix: '/advancedoc/',
   images: {
     unoptimized: true
   }
