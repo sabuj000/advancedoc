@@ -2,7 +2,7 @@
 import { MDXProvider } from '@mdx-js/react'
 import ApiRequest from '../components/ApiRequest'
 import ApiResponse from '../components/ApiResponse'
-import '../styles/globals.css'
+// import '../styles/globals.css'
 
 const components = {
   ApiRequest,
