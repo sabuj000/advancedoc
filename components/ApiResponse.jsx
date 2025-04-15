@@ -13,7 +13,9 @@ export default function ApiResponse({ children }) {
     <div style={{ background: '#e6f7f1', padding: '1rem', borderRadius: '6px' }}>
       <strong>📥 Response</strong>
       <pre ref={codeRef}>
-        <code className="language-json">{children}</code>
+        <code className="language-json">
+          {typeof children === 'string' ? children : String(children)}
+        </code>
       </pre>
     </div>
   )
