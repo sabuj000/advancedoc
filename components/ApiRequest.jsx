@@ -1,12 +1,3 @@
-
----
-
----
-  ## 🔧 Step 2: Create Two Components
-
-### ✅ `/components/ApiRequest.jsx`
-
-```jsx
 import React from 'react'
 import Prism from 'prismjs'
 import { useEffect, useRef } from 'react'
