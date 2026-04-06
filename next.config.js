@@ -2,9 +2,9 @@
 const withMDX = require('@next/mdx')({
   extension: /\.mdx?$/,
   options: {
-    remarkPlugins: [],
-    rehypePlugins: [],
-    // providerImportSource: "@mdx-js/react", // Uncomment if using MDXProvider
+    remarkPlugins: [require('remark-gfm')],
+    rehypePlugins: [require('rehype-slug')],
+    providerImportSource: "@mdx-js/react",
   }
 });
 
@@ -13,5 +13,8 @@ module.exports = withMDX({
   trailingSlash: true,
   images: {
     unoptimized: true
+  },
+  experimental: {
+    mdxRs: true
   }
 });

@@ -1,0 +1,90 @@
+# Create user
+
+## Summary
+
+Creates a new user with a unique email and display name. The server assigns a UUID `id` and `createdAt` timestamp. Use this when onboarding a person or service identity that must be addressable by email.
+
+## Endpoint
+
+| Property | Value |
+|----------|--------|
+| Method | `POST` |
+| Path | `/users` |
+
+Base URL per OpenAPI: `https://api.example.com/v1` (see `api/specs/openapi.yaml` `servers`).
+
+## Request
+
+### Headers
+
+| Header | Required | Description |
+|--------|----------|-------------|
+| `Content-Type` | Yes | `application/json` |
+
+### Path parameters
+
+None.
+
+### Query parameters
+
+None.
+
+### Body
+
+JSON object matching `CreateUserRequest`:
+
+| Field | Type | Required | Description |
+|-------|------|----------|-------------|
+| `email` | string (email) | Yes | Must be unique across users. |
+| `name` | string | Yes | Non-empty display name. |
+
+## Response
+
+### Success
+
+**Status:** `201`
+
+Body: `User` schema.
+
+| Field | Type | Description |
+|-------|------|-------------|
+| `id` | string (uuid) | Assigned identifier. |
+| `email` | string | Stored email. |
+| `name` | string | Display name. |
+| `createdAt` | string (date-time) | Creation time (ISO 8601). |
+
+## Errors
+
+| Status | Condition | Response / notes |
+|--------|-----------|------------------|
+| `400` | Invalid or missing `email`/`name` | `Error` with `code` `validation_error`. |
+| `409` | `email` already registered | `Error` with `code` `conflict`. |
+
+## Examples
+
+### Request
+
+```http
+POST /users HTTP/1.1
+Host: api.example.com
+Content-Type: application/json
+
+{
+  "email": "jane@example.com",
+  "name": "Jane Doe"
+}
+```
+
+### Response
+
+```http
+HTTP/1.1 201 Created
+Content-Type: application/json
+
+{
+  "id": "550e8400-e29b-41d4-a716-446655440000",
+  "email": "jane@example.com",
+  "name": "Jane Doe",
+  "createdAt": "2026-04-06T12:00:00Z"
+}
+```

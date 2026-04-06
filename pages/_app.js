@@ -1,19 +1,11 @@
 // pages/_app.js
-import { MDXProvider } from '@mdx-js/react'
-import ApiRequest from '../components/ApiRequest'
-import ApiResponse from '../components/ApiResponse'
-// import '../styles/globals.css'
-
-const components = {
-  ApiRequest,
-  ApiResponse,
-  // Add more custom components here
-}
+import { MDXProviderWrapper } from '../lib/mdx-provider'
+import '../styles/globals.css'
 
 export default function MyApp({ Component, pageProps }) {
   return (
-    <MDXProvider components={components}>
+    <MDXProviderWrapper>
       <Component {...pageProps} />
-    </MDXProvider>
+    </MDXProviderWrapper>
   )
 }

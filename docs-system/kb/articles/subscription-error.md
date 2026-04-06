@@ -1,0 +1,38 @@
+# Unable to create subscription due to invalid plan ID
+
+## Scope
+
+**Covers:** Failures when creating a subscription because the `planId` in the request does not match an active plan in your environment or account.
+
+**Does not cover:** Card declines, invoice failures, or authorization errors unrelated to plan identifiers.
+
+## Prerequisites
+
+- Access to list available plans (API or admin console).
+- The exact `planId` string your application or script sends when creating a subscription.
+
+## Problem Statement
+
+You attempt to create a subscription. The operation fails with a validation or client error stating that the plan ID is invalid, unknown, or not available. In the admin UI, the plan may not appear selectable or save may be blocked with a similar message.
+
+## Solution
+
+Use a `planId` that exists in the current plan catalog for your environment. Replace deprecated IDs, typos, or IDs from another environment, then retry.
+
+## Steps to Follow
+
+1. Retrieve the list of active plans for your environment.
+2. Identify the plan you intend to use and copy its `planId` exactly.
+3. Open your integration configuration or request payload and locate the `planId` field.
+4. Replace the value with the valid `planId` from step 2.
+5. Retry the create-subscription operation.
+6. Confirm the subscription record exists and references the expected plan.
+
+## Expected Outcome
+
+The subscription is created without a plan validation error. The subscription details show the correct plan name or identifier.
+
+## Additional Resources
+
+- `user-docs/guides/create-subscription.md`
+- `api/specs/openapi.yaml` — extend with subscription endpoints when your API is documented there.
