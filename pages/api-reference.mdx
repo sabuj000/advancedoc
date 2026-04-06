@@ -1,0 +1,37 @@
+import ApiRequest from '../components/ApiRequest'
+import ApiResponse from '../components/ApiResponse'
+
+# 📘 Create a Campaign API
+
+Use this endpoint to create a new Campaign.
+
+## Sample Request
+
+<ApiRequest>
+{`
+{
+  "campaign": {
+    "name": "Test",
+    "goal_ids": [101],
+    "status": "running"
+  }
+}
+`}
+</ApiRequest>
+
+## Sample Response
+
+<ApiResponse>
+{`
+{
+  "campaign": {
+    "id": 12345,
+    "name": "Test",
+    "goal_ids": [101],
+    "status": "running",
+    "created_at": "2025-04-15T10:00:00Z"
+  }
+}
+`}
+</ApiResponse>
+
