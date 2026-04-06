@@ -2,9 +2,9 @@
 const withMDX = require('@next/mdx')({
   extension: /\.mdx?$/,
   options: {
-    remarkPlugins: [],
-    rehypePlugins: [],
-    // providerImportSource: "@mdx-js/react" // Optional: use if you're wrapping with MDXProvider
+    remarkPlugins: [require('remark-gfm')],
+    rehypePlugins: [require('rehype-slug')],
+    providerImportSource: "@mdx-js/react",
   }
 });
 
@@ -20,9 +20,7 @@ const nextConfig = {
   images: {
     unoptimized: true
   },
-
-  // Use static export (required for Vercel + MDX with output: export)
-  output: 'export'
-};
-
-module.exports = withMDX(nextConfig);
+  experimental: {
+    mdxRs: true
+  }
+});

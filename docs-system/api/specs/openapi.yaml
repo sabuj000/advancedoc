@@ -1,0 +1,129 @@
+openapi: 3.0.3
+info:
+  title: Example API
+  version: 1.0.0
+  description: |
+    Reference specification for docs-system sample content.
+    Extend this file as your product API grows.
+
+servers:
+  - url: https://api.example.com/v1
+    description: Production
+
+paths:
+  /users:
+    post:
+      operationId: createUser
+      summary: Create a user
+      description: Creates a new user with a unique email address.
+      tags:
+        - Users
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateUserRequest'
+      responses:
+        '201':
+          description: User created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/User'
+        '400':
+          description: Validation error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '409':
+          description: Email already exists
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+
+  /users/{id}:
+    get:
+      operationId: getUserById
+      summary: Get user by ID
+      description: Returns a single user by UUID.
+      tags:
+        - Users
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: User identifier (UUID)
+          schema:
+            type: string
+            format: uuid
+      responses:
+        '200':
+          description: User found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/User'
+        '404':
+          description: User not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+
+components:
+  schemas:
+    CreateUserRequest:
+      type: object
+      required:
+        - email
+        - name
+      properties:
+        email:
+          type: string
+          format: email
+          example: jane@example.com
+        name:
+          type: string
+          minLength: 1
+          example: Jane Doe
+
+    User:
+      type: object
+      required:
+        - id
+        - email
+        - name
+        - createdAt
+      properties:
+        id:
+          type: string
+          format: uuid
+        email:
+          type: string
+          format: email
+        name:
+          type: string
+        createdAt:
+          type: string
+          format: date-time
+
+    Error:
+      type: object
+      required:
+        - code
+        - message
+      properties:
+        code:
+          type: string
+          enum:
+            - validation_error
+            - conflict
+            - not_found
+        message:
+          type: string
+        details:
+          type: object
+          additionalProperties: true
