@@ -4,6 +4,8 @@
   "description": "MDX-powered API docs",
   "scripts": {
     "dev": "next dev",
+    "sync-docs": "node scripts/sync-docs.js",
+    "prebuild": "npm run sync-docs",
     "build": "next build",
     "start": "next start"
   },
