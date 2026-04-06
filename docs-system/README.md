@@ -31,6 +31,18 @@ docs-system/
 
 Global policy and anti-patterns live in `CLAUDE.md`.
 
+## Sync into the Next.js site
+
+From the repository root:
+
+```bash
+npm run sync-docs
+```
+
+This copies Markdown from `docs-system/` into `pages/docs/` as `.mdx` (see `scripts/sync-docs.js`). `npm run build` runs `sync-docs` automatically via `prebuild`.
+
+After you add a new `.md` file under `docs-system`, run `sync-docs` and add a link on `pages/docs/index.mdx`.
+
 ## How to generate docs (v1)
 
 There is no code generator in v1. To create or refresh content:

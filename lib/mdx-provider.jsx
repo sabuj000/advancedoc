@@ -3,8 +3,8 @@ import { useMDXComponents } from '@mdx-js/react'
 import { useMemo } from 'react'
 
 // Import your custom components here
-import CodeBlock from '../components/CodeBlock'
-import Alert from '../components/Alert'
+import CodeBlock from '../components/CodeBlock.jsx'
+import Alert from '../components/Alert.jsx'
 
 const components = {
   pre: CodeBlock,
